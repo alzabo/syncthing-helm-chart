@@ -40,11 +40,11 @@ securityContext: {}
 
 service:
   web:
-    type: NodePort
+    type: ClusterIP
     port: 80
     # loadBalancerIP:
   backend:
-    type: NodePort
+    type: ClusterIP
 
 ingress:
   enabled: false
