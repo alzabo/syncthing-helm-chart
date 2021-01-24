@@ -14,9 +14,17 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-persistenVolume:
-  path: /path/to/hostpath
-  server: myserver
+persistence:
+  volume:
+    enabled: false
+    path: /path/to/hostpath
+    server: myserver
+    storageClass: ''
+    size: 500Gi
+  volumeClaim:
+    enabled: false
+    storageClass: ''
+    size: 500Gi
 
 serviceAccount:
   # Specifies whether a service account should be created

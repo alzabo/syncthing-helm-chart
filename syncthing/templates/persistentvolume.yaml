@@ -1,3 +1,4 @@
+{{- if .Values.persistence.volume.enabled }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -5,11 +6,16 @@ metadata:
   labels:
     {{- include "syncthing.labels" . | nindent 4 }}
 spec:
+  {{- if .Values.persistence.volume.storageClass }}
+  storageClassName: {{ .Values.persistence.volume.storageClass | quote }}
+  {{- else }}
   storageClassName: {{ include "syncthing.fullname" . }}
+  {{- end }}
   capacity:
-    storage: 500Gi
+    storage: {{ .Values.persistence.volume.size | quote }}
   accessModes:
     - ReadWriteOnce
   nfs:
-    path: {{ .Values.persistenVolume.path }}
-    server: {{ .Values.persistenVolume.server }}
+    path: {{ .Values.persistence.volume.path }}
+    server: {{ .Values.persistence.volume.server }}
+{{- end }}
