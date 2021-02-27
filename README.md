@@ -6,7 +6,7 @@ A simple helm chart for deploying [Syncthing](https://syncthing.net/) to k8s.
 
 Syncthing uses UDP for discovery so NodePort must be used for the `backend` service (unless you figure something else out).
 
-see [values.yaml](syncthing/values.yaml) for configurations.
+see [values.yaml](values.yaml) for configurations.
 
 Install using Helm v3:
 
