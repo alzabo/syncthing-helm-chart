@@ -2,9 +2,9 @@
 # Helm chart for deploying Syncthing to K8s
 **Go to artifact hub for versions.**
 
-Bare bones helm chart for deploying [Syncthing](https://syncthing.net/) to k8s.
+A simple helm chart for deploying [Syncthing](https://syncthing.net/) to k8s.
 
-Syncthing uses UDP for discovery and k8s services don't support it so NodePort must be used for the `backend` service (unless you figure something out).
+Syncthing uses UDP for discovery so NodePort must be used for the `backend` service (unless you figure something else out).
 
 see [values.yaml](syncthing/values.yaml) for configurations.
 
