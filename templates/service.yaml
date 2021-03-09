@@ -32,12 +32,28 @@ spec:
       targetPort: sync-listen
       protocol: TCP
       name: sync-listen
+  selector:
+    {{- include "syncthing.selectorLabels" . | nindent 4 }}
+{{- if .Values.service.backend.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.service.backend.loadBalancerIP }}
+{{- end }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "syncthing.fullname" . }}-discovery
+  labels:
+    {{- include "syncthing.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.discovery.type }}
+  ports:
     - port: 21027
       targetPort: discovery
       protocol: UDP
       name: discovery
   selector:
     {{- include "syncthing.selectorLabels" . | nindent 4 }}
-{{- if .Values.service.backend.loadBalancerIP }}
-  loadBalancerIP: {{ .Values.service.backend.loadBalancerIP }}
+{{- if .Values.service.discovery.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.service.discovery.loadBalancerIP }}
 {{- end }}
